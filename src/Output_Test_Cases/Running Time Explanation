@@ -1,0 +1,26 @@
+To experiment with the running times of the different threads, we ran the program 3 times for each network buffer size.
+We have found that there is no significant different in running times, whether the buffer size is 10 or 20.
+In other words, there is no correlation between running time and network buffer size.
+This may be because a thread's speed of execution depends on the kernel system itself, rather than the code that is running.
+Another reason may be that since threads are lightweight processes, they do not greatly impact a program's execution speed
+
+Test Results
+-----------------------------------------
+Network Buffer size 10
+
+1. Network Thread Running Time: 79 ms, 73ms, 85ms
+
+2. Server Thread Running Time is: 35 ms, 23ms, 30ms
+
+3. Client Thread Running Time (Sending): 12 ms, 13ms, 20ms
+
+4. Client Thread Running Time (Receiving): 18 ms, 13ms, 20ms
+
+Network Buffer size 20
+1. Network Thread Running Time: 72 ms, 82ms, 70ms
+
+2. Server Thread Running Time is: 27 ms, 30ms, 30ms
+
+3. Client Thread Running Time (Sending): 14 ms, 21ms, 10ms
+
+4. Client Thread Running Time (Receiving): 16 ms, 21ms, 20ms
