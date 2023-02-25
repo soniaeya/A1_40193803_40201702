@@ -1,4 +1,4 @@
-public class Main {
+public class Driver {
     public static void main(String[] args) {
         Thread objNetwork = new Thread(new Network("network"));           /* Creating Network Thread */
         objNetwork.start();                                                      /* Activate Network Thread */

@@ -34,7 +34,7 @@ public class Network implements Runnable {
             clientConnectionStatus = "idle";
             serverConnectionStatus = "idle";
             portID = 0;
-            maxNbPackets = 20;
+            maxNbPackets = 10;
             incomingPackets = new Transactions[maxNbPackets];
             outgoingPackets = new Transactions[maxNbPackets];
             for (i = 0; i < maxNbPackets; i++) {
@@ -485,9 +485,8 @@ public class Network implements Runnable {
      * @return
      */
     public void run() {
-        long time = System.currentTimeMillis();
-
-        while (!getServerConnectionStatus().equals("disconnected") && !getClientConnectionStatus().equals("disconnected")) {
+        //If both disconnected, break loop
+        while (!(getServerConnectionStatus().equals("disconnected") && getClientConnectionStatus().equals("disconnected"))) {
             Thread.yield();
         }
 

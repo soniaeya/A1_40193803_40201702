@@ -169,6 +169,7 @@ public class Server implements Runnable {
 
         /* Process the accounts until the client disconnects */
         while ((!network.getClientConnectionStatus().equals("disconnected"))) { //while client connection is connected
+
             if (!network.getInBufferStatus().equals("empty")) {
 
                 network.transferIn(trans);                              /* Transfer a transaction from the network input buffer */
@@ -192,6 +193,7 @@ public class Server implements Runnable {
                         trans.setTransactionStatus("done");
                         break;
                 }
+
 
                 while((network.getOutBufferStatus().equals("full"))) /* Alternatively,  busy-wait until the network output buffer is available */
                     Thread.yield();
@@ -268,10 +270,10 @@ public class Server implements Runnable {
         Transactions trans = new Transactions();
         long serverStartTime = System.currentTimeMillis(), serverEndTime;
 
-        while (!network.getNetworkStatus().equals("active")){
-            Thread.yield();
-        }
 
+//        while (!network.getNetworkStatus().equals("active")){
+//            Thread.yield();
+//        }
 
         processTransactions(trans);
         network.disconnect(network.getServerIP());

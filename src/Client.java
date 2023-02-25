@@ -184,35 +184,26 @@ public class Client implements Runnable {
 
         Transactions transact = new Transactions();
         long sendClientStartTime, sendClientEndTime, receiveClientStartTime, receiveClientEndTime;
-
-
         while(!network.getServerConnectionStatus().equals("connected")){
             Thread.yield();
         }
-
-
         if (getClientOperation().equals("sending")) {
             sendClientStartTime = System.currentTimeMillis();
             sendTransactions();
             sendClientEndTime = System.currentTimeMillis();
             System.out.println("\nTerminating client receiving thread (Sending): " + (sendClientEndTime - sendClientStartTime) + " ms");
-
         }
-
         else if (getClientOperation().equals("receiving")) {
             receiveClientStartTime = System.currentTimeMillis();
             receiveTransactions(transact);
             network.disconnect(network.getClientIP());
             receiveClientEndTime = System.currentTimeMillis();
             System.out.println("\nTerminating client receiving thread (Receiving): " + (receiveClientEndTime - receiveClientStartTime) + " ms");
-
         }
         else {
             System.out.println("ERROR: Wrong client operation type!");
-            System.exit(1);
+            network.disconnect(network.getClientIP());
+
         }
-
-
-
     }
 }
